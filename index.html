@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Code of Conduct</title>
+<meta name="description" content="A short, growing list of house rules for working with AI on a team.">
+<style>
+  :root {
+    --bg: #fdfdfb;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #d64545;
+    --rule-bg: #f4f3ef;
+    --border: #e4e2db;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15161a;
+      --fg: #e9e8e3;
+      --muted: #9a9a94;
+      --accent: #ff7a70;
+      --rule-bg: #1e1f24;
+      --border: #2c2d33;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .tagline {
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin: 0 0 2.2rem;
+  }
+  .intro {
+    font-size: 1.15rem;
+    margin-bottom: 3rem;
+  }
+  .intro strong { color: var(--accent); }
+  .rule {
+    position: relative;
+    background: var(--rule-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.8rem;
+    scroll-margin-top: 2rem;
+  }
+  .rule-num {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .rule h2 {
+    font-size: 1.5rem;
+    margin: 0.3rem 0 0.9rem;
+  }
+  .rule ul {
+    padding-left: 1.2rem;
+    margin: 0 0 1rem;
+  }
+  .rule li { margin-bottom: 0.5rem; }
+  .bottom-line {
+    font-style: italic;
+    color: var(--muted);
+    border-top: 1px dashed var(--border);
+    padding-top: 0.9rem;
+    margin: 0;
+  }
+  .permalink {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg);
+    cursor: pointer;
+  }
+  .permalink:hover { color: var(--accent); border-color: var(--accent); }
+  .more {
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+    margin: 2.5rem 0;
+    font-size: 1rem;
+  }
+  footer {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+  }
+  footer a { color: var(--fg); }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AI Code of Conduct</h1>
+  <p class="tagline">House rules for working with AI on a team.</p>
+
+  <p class="intro">
+    AI writes code now. AI drafts messages now. That's fine — but it doesn't get to
+    make the call, and it definitely doesn't get to take the blame.
+    This is a short, <strong>living</strong> list of ground rules. Two so far.
+    More when we hit a new edge case.
+  </p>
+
+  <section class="rule" id="own-it">
+    <div class="rule-num">Rule 1</div>
+    <h2>Own your AI-generated code</h2>
+    <p>You hit merge. You own it — no matter who, or what, wrote the diff.</p>
+    <ul>
+      <li>Read every line before you ask someone else to.</li>
+      <li>Be able to explain any line in review, in your own words.</li>
+      <li>"The AI wrote it" is not a defense for a bug, a bad pattern, or an unreviewed dependency.</li>
+      <li>Reviewers hold AI-assisted code to the exact same bar as hand-written code — not lower.</li>
+    </ul>
+    <p class="bottom-line">The model doesn't get a byline. It doesn't get the blame either. You do.</p>
+    <a class="permalink" href="#own-it" onclick="copyLink(event, this)">#own-it</a>
+  </section>
+
+  <section class="rule" id="be-human">
+    <div class="rule-num">Rule 2</div>
+    <h2>Communicate like a human, over Slack or Teams</h2>
+    <p>Chat is for people talking to people. Keep it that way.</p>
+    <ul>
+      <li>Don't paste raw model output into a DM and call it your opinion.</li>
+      <li>If a message, summary, or decision is AI-drafted, rewrite it in your own voice — or say so.</li>
+      <li>Skip the AI-flavored filler: no "I hope this message finds you well," no seven bullet points for a one-line question.</li>
+      <li>Keep it as short as you'd write it yourself. Shorter, ideally.</li>
+    </ul>
+    <p class="bottom-line">Your teammates are talking to you. Don't make them talk to your assistant instead.</p>
+    <a class="permalink" href="#be-human" onclick="copyLink(event, this)">#be-human</a>
+  </section>
+
+  <p class="more">&hellip; more rules land here when we need them.</p>
+
+  <footer>
+    Hit an edge case this list doesn't cover?
+    <a href="https://github.com/kwnliu/ai-coc/issues/new">Open an issue.</a>
+  </footer>
+</div>
+
+<script>
+function copyLink(e, el) {
+  e.preventDefault();
+  const url = location.origin + location.pathname + el.getAttribute('href');
+  navigator.clipboard?.writeText(url).catch(() => {});
+  history.replaceState(null, '', el.getAttribute('href'));
+  const original = el.textContent;
+  el.textContent = 'copied!';
+  setTimeout(() => { el.textContent = original; }, 1200);
+}
+</script>
+</body>
+</html>
