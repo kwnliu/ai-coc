@@ -4,26 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Code of Conduct</title>
-<meta name="description" content="A short, growing list of house rules for working with AI on a team.">
+<meta name="description" content="A short, living list of ground rules for working with AI on a team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fdfdfb;
-    --fg: #1a1a1a;
-    --muted: #6b6b6b;
-    --accent: #d64545;
-    --rule-bg: #f4f3ef;
-    --border: #e4e2db;
-    color-scheme: light dark;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #15161a;
-      --fg: #e9e8e3;
-      --muted: #9a9a94;
-      --accent: #ff7a70;
-      --rule-bg: #1e1f24;
-      --border: #2c2d33;
-    }
+    --bg: #131211;
+    --fg: #F2EEE7;
+    --muted: #948B82;
+    --body-text: #C9C2B8;
+    --border: #2E2A26;
+    --border-inactive: #3A3531;
+    --accent: #FF5C2B;
+    color-scheme: dark;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -31,156 +25,542 @@
     margin: 0;
     background: var(--bg);
     color: var(--fg);
-    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
-    line-height: 1.55;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 6rem 1.5rem 4rem;
-  }
-  h1 {
-    font-size: clamp(2.2rem, 6vw, 3.2rem);
-    margin: 0 0 0.4rem;
-    letter-spacing: -0.01em;
-  }
-  .tagline {
-    font-size: 1.15rem;
-    color: var(--muted);
-    margin: 0 0 2.2rem;
-  }
-  .intro {
-    font-size: 1.15rem;
-    margin-bottom: 3rem;
-  }
-  .intro strong { color: var(--accent); }
-  .rule {
-    position: relative;
-    background: var(--rule-bg);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
-    border-radius: 6px;
-    padding: 1.6rem 1.8rem;
-    margin-bottom: 1.8rem;
-    scroll-margin-top: 2rem;
-  }
-  .rule-num {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--accent);
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .eyebrow {
+    font: 500 12px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: var(--accent);
   }
-  .rule h2 {
-    font-size: 1.5rem;
-    margin: 0.3rem 0 0.9rem;
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(19, 18, 17, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
   }
-  .rule ul {
-    padding-left: 1.2rem;
-    margin: 0 0 1rem;
+  .header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
   }
-  .rule li { margin-bottom: 0.5rem; }
-  .bottom-line {
-    font-style: italic;
+  .logo {
+    font: 500 12px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .version-badge {
+    font: 400 12px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--muted);
-    border-top: 1px dashed var(--border);
-    padding-top: 0.9rem;
-    margin: 0;
   }
-  .permalink {
-    position: absolute;
-    top: 1.6rem;
-    right: 1.5rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 0.75rem;
-    text-decoration: none;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 0.2rem 0.5rem;
-    background: var(--bg);
+  .spacer { flex: 1 1 40px; }
+  .btn-outline {
+    font: 500 12px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg);
+    background: transparent;
+    border: 1px solid var(--fg);
+    padding: 9px 14px;
     cursor: pointer;
   }
-  .permalink:hover { color: var(--accent); border-color: var(--accent); }
-  .more {
-    text-align: center;
-    color: var(--muted);
-    font-style: italic;
-    margin: 2.5rem 0;
-    font-size: 1rem;
+  .btn-outline:hover { background: var(--fg); color: var(--bg); text-decoration: none; }
+  .btn-solid {
+    font: 500 12px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
   }
-  footer {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 0.9rem;
+  .btn-solid:hover { background: var(--fg); border-color: var(--fg); color: var(--bg); text-decoration: none; }
+
+  main { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+  .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--border); }
+  .hero .eyebrow { margin-bottom: 40px; }
+  h1.title {
+    font-size: clamp(58px, 9.5vw, 140px);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 14ch;
+    text-wrap: balance;
+  }
+  h1.title span { color: var(--accent); }
+  .hero-copy { display: flex; flex-wrap: wrap; gap: 48px; margin-top: 52px; align-items: flex-start; }
+  .hero-copy p { margin: 0; text-wrap: pretty; }
+  .hero-lede { flex: 1 1 420px; max-width: 56ch; font-size: 21px; line-height: 1.55; color: var(--body-text); }
+  .hero-meta { flex: 0 1 300px; font: 400 15px/1.65 'IBM Plex Mono', monospace; color: var(--muted); }
+
+  nav.index {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.index a {
+    background: var(--bg);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--fg);
+  }
+  nav.index a:hover { background: #1E1B19; text-decoration: none; }
+  nav.index .num-label { font: 500 11px/1 'IBM Plex Mono', monospace; letter-spacing: 0.16em; color: var(--accent); }
+  nav.index .rule-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; line-height: 1.15; }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 28px 0 4px;
+  }
+  .filters .filter-label {
+    font: 400 11px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     color: var(--muted);
+    margin-right: 8px;
+  }
+  .filter-btn {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 9px 13px;
+    border: 1px solid var(--border-inactive);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .filter-btn:hover { border-color: var(--fg); color: var(--fg); }
+  .filter-btn.active { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+
+  .rule {
+    scroll-margin-top: 80px;
     border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    margin-top: 2rem;
+    padding: 64px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 56px;
+    align-items: flex-start;
   }
-  footer a { color: var(--fg); }
-  footer a:hover { color: var(--accent); }
+  .rule-num-col { flex: 0 0 200px; display: flex; flex-direction: column; gap: 12px; }
+  .rule-num {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(92px, 10vw, 132px);
+    line-height: 0.76;
+    color: var(--fg);
+  }
+  .rule-category {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .rule-body { flex: 1 1 460px; min-width: 0; }
+  .rule-body h2 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(34px, 4.4vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .rule-dek { font-size: 20px; line-height: 1.5; color: var(--body-text); margin: 0 0 32px; max-width: 52ch; text-wrap: pretty; }
+  .rule-list { list-style: none; margin: 0 0 32px; padding: 0; display: flex; flex-direction: column; gap: 13px; max-width: 60ch; }
+  .rule-list li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--body-text);
+  }
+  .rule-list li::before {
+    content: "—";
+    color: var(--accent);
+    font: 500 15px/1.75 'IBM Plex Mono', monospace;
+  }
+  .rule-quote {
+    margin: 0 0 24px;
+    padding: 0 0 0 20px;
+    border-left: 2px solid var(--accent);
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 26px;
+    line-height: 1.3;
+    font-style: italic;
+    color: var(--fg);
+    max-width: 40ch;
+  }
+  .rule-footer { display: flex; gap: 18px; align-items: center; }
+  .rule-footer a.slug {
+    font: 400 11px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .rule-footer a.slug:hover { color: var(--fg); text-decoration: none; }
+  .copy-rule-btn {
+    font: 400 11px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  .copy-rule-btn:hover { color: var(--fg); }
+
+  .empty-state {
+    display: none;
+    border-top: 1px solid var(--border);
+    padding: 72px 0;
+    font: 400 15px/1.6 'IBM Plex Mono', monospace;
+    color: var(--muted);
+  }
+
+  .next-rule {
+    border-top: 1px solid var(--border);
+    padding: 64px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 56px;
+    align-items: flex-start;
+  }
+  .next-rule .rule-num-col .rule-num { color: var(--border-inactive); }
+  .next-rule p {
+    font: 400 17px/1.6 'IBM Plex Mono', monospace;
+    color: var(--muted);
+    margin: 0 0 24px;
+    max-width: 44ch;
+  }
+  .next-rule a {
+    display: inline-block;
+    font: 500 12px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--fg);
+    padding: 14px 20px;
+    border: 1px solid var(--fg);
+  }
+  .next-rule a:hover { background: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+  .changelog { border-top: 1px solid var(--fg); padding: 56px 0 96px; }
+  .changelog .eyebrow { color: var(--muted); margin-bottom: 32px; }
+  .changelog-row { display: flex; flex-wrap: wrap; gap: 8px 40px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .changelog-row .v { flex: 0 0 120px; font: 400 13px/1.5 'IBM Plex Mono', monospace; color: var(--muted); }
+  .changelog-row .v.current { color: var(--accent); }
+  .changelog-row .desc { flex: 1 1 340px; font-size: 16px; line-height: 1.5; color: var(--body-text); }
+
+  footer.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 64px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    align-items: center;
+    font: 400 12px/1.6 'IBM Plex Mono', monospace;
+    color: var(--muted);
+  }
+  footer.site-footer .spacer { flex: 1 1 20px; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>AI Code of Conduct</h1>
-  <p class="tagline">House rules for working with AI on a team.</p>
 
-  <p class="intro">
-    AI writes code now. AI drafts messages now. That's fine — but it doesn't get to
-    make the call, and it definitely doesn't get to take the blame.
-    This is a short, <strong>living</strong> list of ground rules. Two so far.
-    More when we hit a new edge case.
-  </p>
+<header>
+  <div class="header-inner">
+    <a href="#top" class="logo">AI&nbsp;/&nbsp;Code&nbsp;of&nbsp;Conduct</a>
+    <span class="version-badge">v0.3 · living</span>
+    <div class="spacer"></div>
+    <button class="btn-outline" id="copy-all-btn">Copy as markdown</button>
+    <a href="https://github.com/kwnliu/ai-coc/issues/new" class="btn-solid">Propose a rule</a>
+  </div>
+</header>
 
-  <section class="rule" id="own-it">
-    <div class="rule-num">Rule 1</div>
-    <h2>Own your AI-generated code</h2>
-    <p>You hit merge. You own it — no matter who, or what, wrote the diff.</p>
-    <ul>
-      <li>Read every line before you ask someone else to.</li>
-      <li>Be able to explain any line in review, in your own words.</li>
-      <li>"The AI wrote it" is not a defense for a bug, a bad pattern, or an unreviewed dependency.</li>
-      <li>Reviewers hold AI-assisted code to the exact same bar as hand-written code — not lower.</li>
-    </ul>
-    <p class="bottom-line">The model doesn't get a byline. It doesn't get the blame either. You do.</p>
-    <a class="permalink" href="#own-it" onclick="copyLink(event, this)">#own-it</a>
+<main id="top">
+
+  <section class="hero">
+    <div class="eyebrow">House rules · Updated Sep 2026</div>
+    <h1 class="title serif">AI Code of Conduct<span>.</span></h1>
+    <div class="hero-copy">
+      <p class="hero-lede">AI writes code now. AI drafts messages now. That's fine — but it doesn't get to make the call, and it definitely doesn't get to take the blame.</p>
+      <p class="hero-meta">A short, living list of ground rules for working with AI on a team. Eight so far. More when we hit a new edge case.</p>
+    </div>
   </section>
 
-  <section class="rule" id="be-human">
-    <div class="rule-num">Rule 2</div>
-    <h2>Communicate like a human, over Slack or Teams</h2>
-    <p>Chat is for people talking to people. Keep it that way.</p>
-    <ul>
-      <li>Don't paste raw model output into a DM and call it your opinion.</li>
-      <li>If a message, summary, or decision is AI-drafted, rewrite it in your own voice — or say so.</li>
-      <li>Skip the AI-flavored filler: no "I hope this message finds you well," no seven bullet points for a one-line question.</li>
-      <li>Keep it as short as you'd write it yourself. Shorter, ideally.</li>
-    </ul>
-    <p class="bottom-line">Your teammates are talking to you. Don't make them talk to your assistant instead.</p>
-    <a class="permalink" href="#be-human" onclick="copyLink(event, this)">#be-human</a>
+  <nav class="index" id="index-nav"></nav>
+
+  <div class="filters" id="filters">
+    <span class="filter-label">Filter</span>
+  </div>
+
+  <div id="rules"></div>
+
+  <section class="empty-state" data-empty="1">No rules in this theme yet.</section>
+
+  <section class="next-rule">
+    <div class="rule-num-col"><div class="rule-num serif">09</div></div>
+    <div class="rule-body">
+      <p>&hellip; the next rule lands here when we hit an edge case this list doesn't cover.</p>
+      <a href="https://github.com/kwnliu/ai-coc/issues/new">Open an issue</a>
+    </div>
   </section>
 
-  <p class="more">&hellip; more rules land here when we need them.</p>
+  <section class="changelog">
+    <div class="eyebrow mono">Changelog</div>
+    <div class="changelog-row">
+      <span class="v current">v0.3 · Sep 2026</span>
+      <span class="desc">Six rules added — data, disclosure, verification, agents, people decisions, identity. Rules grouped into themes.</span>
+    </div>
+    <div class="changelog-row">
+      <span class="v">v0.2</span>
+      <span class="desc">Rule 02 — Communicate like a human.</span>
+    </div>
+    <div class="changelog-row">
+      <span class="v">v0.1</span>
+      <span class="desc">Rule 01 — Own your AI-generated code. The list begins.</span>
+    </div>
+  </section>
 
-  <footer>
-    Hit an edge case this list doesn't cover?
-    <a href="https://github.com/kwnliu/ai-coc/issues/new">Open an issue.</a>
+  <footer class="site-footer">
+    <span>A living document. Fork it, argue with it, make it yours.</span>
+    <div class="spacer"></div>
+    <a href="https://github.com/kwnliu/ai-coc">github.com/kwnliu/ai-coc</a>
   </footer>
-</div>
+
+</main>
 
 <script>
-function copyLink(e, el) {
-  e.preventDefault();
-  const url = location.origin + location.pathname + el.getAttribute('href');
-  navigator.clipboard?.writeText(url).catch(() => {});
-  history.replaceState(null, '', el.getAttribute('href'));
-  const original = el.textContent;
-  el.textContent = 'copied!';
-  setTimeout(() => { el.textContent = original; }, 1200);
+const FILTERS = ["all", "craft", "comms", "data", "agents", "people"];
+
+const RULES = [
+  {
+    num: "01", theme: "craft", anchor: "own-it",
+    title: "Own your AI-generated code",
+    dek: "You hit merge. You own it — no matter who, or what, wrote the diff.",
+    bullets: [
+      "Read every line before you ask someone else to.",
+      "Be able to explain any line in review, in your own words.",
+      "\"The AI wrote it\" is not a defense for a bug, a bad pattern, or an unreviewed dependency.",
+      "Reviewers hold AI-assisted code to the exact same bar as hand-written code — not lower."
+    ],
+    quote: "The model doesn't get a byline. It doesn't get the blame either. You do."
+  },
+  {
+    num: "02", theme: "comms", anchor: "be-human",
+    title: "Communicate like a human",
+    dek: "Chat is for people talking to people. Keep it that way.",
+    bullets: [
+      "Don't paste raw model output into a DM and call it your opinion.",
+      "If a message, summary, or decision is AI-drafted, rewrite it in your own voice — or say so.",
+      "Skip the AI-flavored filler: no \"I hope this message finds you well,\" no seven bullets for a one-line question.",
+      "Keep it as short as you'd write it yourself. Shorter, ideally."
+    ],
+    quote: "Your teammates are talking to you. Don't make them talk to your assistant instead."
+  },
+  {
+    num: "03", theme: "data", anchor: "no-un-paste",
+    title: "Never paste what you can't take back",
+    dek: "Everything you type into a model leaves the building. Assume it's permanent.",
+    bullets: [
+      "No secrets, credentials, or keys. Ever. Not even \"just to debug this one thing.\"",
+      "No customer data, no personal data, nothing under NDA — not even anonymized \"just as an example.\"",
+      "Unreleased work, roadmaps, and incident details stay in tools we control.",
+      "If you're unsure whether it's sensitive, it's sensitive. Ask first."
+    ],
+    quote: "There is no un-paste."
+  },
+  {
+    num: "04", theme: "comms", anchor: "say-so",
+    title: "Say when it's AI",
+    dek: "Nobody minds that you used a model. They mind finding out later.",
+    bullets: [
+      "Flag AI-generated code in the PR description: what was generated, what you changed.",
+      "Note AI-drafted docs, specs, and summaries at the top. One line is enough.",
+      "Never present model output as first-hand research or your own analysis.",
+      "Disclosure is a footnote, not a confession. Keep it light, keep it honest."
+    ],
+    quote: "Trust is cheap to keep and expensive to rebuild."
+  },
+  {
+    num: "05", theme: "craft", anchor: "verify",
+    title: "Verify before you ship it",
+    dek: "A confident answer is not a correct one. Check it yourself.",
+    bullets: [
+      "Every fact, figure, and quote gets a real source you actually opened.",
+      "Every API, flag, and library the model suggests gets checked against the real docs.",
+      "A hallucinated dependency is a supply-chain risk, not a typo. Check the package is real before you install it.",
+      "If you can't verify it, cut it. Don't hedge it into the doc."
+    ],
+    quote: "A fast first draft. Never a source of truth."
+  },
+  {
+    num: "06", theme: "agents", anchor: "leash",
+    title: "Agents get a leash",
+    dek: "Autonomy stops where damage starts.",
+    bullets: [
+      "A human approves anything that touches production, money, or people outside the team.",
+      "Agents run in scoped environments, with the narrowest credentials that still work.",
+      "Every run is logged and attributable to a person — the one who started it.",
+      "Watch the bill. A loop you forgot about is still your loop."
+    ],
+    quote: "\"It ran overnight\" is a sentence you should never have to say."
+  },
+  {
+    num: "07", theme: "people", anchor: "human-calls",
+    title: "AI doesn't get a vote on people",
+    dek: "Hiring, performance, promotion, discipline. Human calls, start to finish.",
+    bullets: [
+      "No model output as evidence in a performance conversation.",
+      "Don't screen candidates with a model, and don't let one write the rejection.",
+      "Feedback about a person is written by the person giving it.",
+      "Grammar help is fine. Judgement is not."
+    ],
+    quote: "If a decision changes someone's life, a human signs it."
+  },
+  {
+    num: "08", theme: "people", anchor: "no-masks",
+    title: "Don't wear someone else's face",
+    dek: "No synthetic voices, faces, or writing passed off as a colleague.",
+    bullets: [
+      "Never generate a teammate's likeness or voice. Not as a joke, not internally, not \"just for the offsite.\"",
+      "Don't write as someone else — in Slack, in email, in a doc, in a commit.",
+      "Synthetic people in demos and mockups get labelled as synthetic.",
+      "Consent is per-use and it expires. Ask again next time."
+    ],
+    quote: "A face is not an asset."
+  }
+];
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+
+function renderIndex() {
+  const nav = document.getElementById("index-nav");
+  nav.innerHTML = RULES.map(r => `
+    <a href="#rule-${r.num}">
+      <span class="num-label">${r.num} · ${r.theme.toUpperCase()}</span>
+      <span class="rule-title serif">${escapeHtml(r.title)}</span>
+    </a>
+  `).join("");
+}
+
+function renderFilters() {
+  const filters = document.getElementById("filters");
+  filters.innerHTML += FILTERS.map(f => `
+    <button class="filter-btn${f === "all" ? " active" : ""}" data-filter="${f}">
+      ${f === "all" ? "All" : f.charAt(0).toUpperCase() + f.slice(1)}
+    </button>
+  `).join("");
+  filters.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => setFilter(btn.getAttribute("data-filter")));
+  });
+}
+
+function renderRules() {
+  const container = document.getElementById("rules");
+  container.innerHTML = RULES.map(r => `
+    <section class="rule" id="rule-${r.num}" data-rule="${r.num}" data-theme="${r.theme}">
+      <div class="rule-num-col">
+        <div class="rule-num serif">${r.num}</div>
+        <div class="rule-category">${r.theme.charAt(0).toUpperCase() + r.theme.slice(1)}</div>
+      </div>
+      <div class="rule-body">
+        <h2 class="serif">${escapeHtml(r.title)}</h2>
+        <p class="rule-dek">${escapeHtml(r.dek)}</p>
+        <ul class="rule-list">
+          ${r.bullets.map(b => `<li><span>${escapeHtml(b)}</span></li>`).join("")}
+        </ul>
+        <blockquote class="rule-quote">${escapeHtml(r.quote)}</blockquote>
+        <div class="rule-footer">
+          <a href="#rule-${r.num}" class="slug">#${r.anchor}</a>
+          <button class="copy-rule-btn" data-copy="${r.num}">Copy rule</button>
+        </div>
+      </div>
+    </section>
+  `).join("");
+  container.querySelectorAll(".copy-rule-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const rule = RULES.find(r => r.num === btn.getAttribute("data-copy"));
+      write(ruleMd(rule), btn);
+    });
+  });
+}
+
+function setFilter(theme) {
+  let shown = 0;
+  document.querySelectorAll("[data-rule]").forEach(el => {
+    const on = theme === "all" || el.getAttribute("data-theme") === theme;
+    el.style.display = on ? "flex" : "none";
+    if (on) shown++;
+  });
+  const empty = document.querySelector("[data-empty]");
+  if (empty) empty.style.display = shown ? "none" : "block";
+  document.querySelectorAll(".filter-btn").forEach(b => {
+    b.classList.toggle("active", b.getAttribute("data-filter") === theme);
+  });
+}
+
+function flash(btn, msg) {
+  if (!btn) return;
+  const prev = btn.textContent;
+  btn.textContent = msg;
+  setTimeout(() => { btn.textContent = prev; }, 1600);
+}
+
+function write(text, btn) {
+  const done = () => flash(btn, "Copied");
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => flash(btn, "Copy failed"));
+  } else {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) { flash(btn, "Copy failed"); }
+    document.body.removeChild(ta);
+  }
+}
+
+function ruleMd(r) {
+  return "## Rule " + r.num + " — " + r.title + "\n\n" + r.dek + "\n\n" +
+    r.bullets.map(b => "- " + b).join("\n") + "\n";
+}
+
+renderIndex();
+renderFilters();
+renderRules();
+
+document.getElementById("copy-all-btn").addEventListener("click", (e) => {
+  const all = "# AI Code of Conduct\n\nHouse rules for working with AI on a team.\n\n" +
+    RULES.map(ruleMd).join("\n");
+  write(all, e.currentTarget);
+});
 </script>
 </body>
 </html>
